@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en-za">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pomodoro Prototype</title>
+        <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+        <style type="text/css">
+            /* CSS is added using style tag since loading it through link breaks
+               breaks the javascript when trying to access styles using
+               document.styleSheets[x].cssRules[y] -Returns null.
+             */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            *::selection {
+                background-color: transparent;
+            }
+
+            body {
+                font-size: 16px;
+                font-family: Arial, sans-serif;
+                padding: 128px 64px 0px 64px;
+                text-align: center;
+                background-color: hsla(0, 0%, 15%, 1);
+                color: hsla(0, 0%, 90%, 1);
+            }
+
+            h3 {
+                font-weight: 400;
+            }
+
+            .set:first-of-type {
+                margin-right: 16px;
+            }
+
+            .set {
+                margin-bottom: 16px;
+                font-size: 16px;
+                display: inline-block;
+                background-color: hsla(0, 0%, 19%, 1);
+                padding: 0.5em 1em;
+            }
+
+            .time-set {
+                display: block;
+                padding: 0.5em 1em;
+                height: 2em;
+                width: 4em;
+                line-height: 1em;
+            }
+
+            .set-btn {
+                cursor: pointer;
+                height: 2em;
+                width: 4em;
+                line-height: 1em;
+                display: block;
+                font-weight: 400;
+                color: hsla(0, 0%, 40%, 1);
+            }
+
+            div.set span {
+                margin: 0 auto;
+                font-size: 1.5em;
+            }
+
+            span.set-btn.plus {
+                padding: 0.5em 1em 0em 1em;
+                height: 1.5em;
+            }
+
+            span.set-btn.minus {
+                padding: 0em 1em 0.5em 1em;
+                height: 1.5em;
+            }
+
+            .time-display {
+                height: 256px;
+                width: 256px;
+                /* background: antiquewhite; */
+                border-radius: 50%;
+                font-size: 32px;
+                line-height: 256px;
+                border: 2px solid green;
+                font-weight: 400;
+                display: block;
+                margin: 0 auto;
+                cursor: pointer;
+                overflow: hidden;
+                position: relative;
+                text-shadow: 1px 1px 2px hsla(0, 0%, 0%, 1);
+            }
+
+            .time-display:before {
+                display: block;
+                position: absolute;
+                top: 0%;
+                left: 0%;
+                /* transform: translate(-50%, -50%); */
+                content: "";
+                background-color: #262626;
+                height: 100%;
+                width: 100%;
+                /* border-radius: 50%; */
+                z-index: -1;
+            }
+
+            .time-display:after {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                content: "";
+                background-color: green;
+                height: 96%;
+                width: 96%;
+                border-radius: 50%;
+                z-index: -2;
+            }
+
+            /* Makes the clocks text visible against the background */
+            span.sec, span.min {
+                text-shadow: 1px 1px 2px hsla(0, 0%, 0%, 1);
+            }
+
+            h1 {
+                display: block;
+                position: relative;
+                top: -80px;
+                font-size: 48px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Pomodoro Clock</h1>
+        <div class="set">
+            <h3>Break</h3>
+            <span class="set-btn plus" onclick="changeBreakTime(1)">+</span>
+            <span class="time-set break">1</span>
+            <span class="set-btn minus" onclick="changeBreakTime(-1)">-</span>
+        </div>
+        <div class="set">
+            <h3>Session</h3>
+            <span class="set-btn plus" onclick="changeSessionTime(1)">+</span>
+            <span class="time-set session">1</span>
+            <span class="set-btn minus" onclick="changeSessionTime(-1)">-</span>
+        </div>
+
+        <div class="time-display">
+            <span class="min">00</span>
+            :
+            <span class="sec">00</span>
+        </div>
+
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
